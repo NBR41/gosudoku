@@ -1,0 +1,2 @@
+# gosudoku
+A sudoku resolver
