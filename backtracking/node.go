@@ -27,7 +27,7 @@ type node struct {
 }
 
 func newNode(x, y int) model.Celler {
-	return &node{Coord: model.Coord{X: x, Y: y}, k: model.Key(x, y)}
+	return &node{Coord: model.NewCoord(x, y), k: model.Key(x, y)}
 }
 
 func (n *node) Get() *int {
@@ -46,27 +46,27 @@ func (n *node) setNodes(nodes map[string]model.Celler, max, blocNb int) {
 	xs := make([]model.Celler, max-1, max-1)
 	nb := 0
 	for x := 0; x < max; x++ {
-		if x != n.X {
-			xs[nb] = nodes[model.Key(x, n.Y)]
+		if x != n.X() {
+			xs[nb] = nodes[model.Key(x, n.Y())]
 			nb++
 		}
 	}
 	ys := make([]model.Celler, max-1, max-1)
 	nb = 0
 	for y := 0; y < max; y++ {
-		if y != n.Y {
-			ys[nb] = nodes[model.Key(n.X, y)]
+		if y != n.Y() {
+			ys[nb] = nodes[model.Key(n.X(), y)]
 			nb++
 		}
 	}
 
 	bs := make([]model.Celler, max-1, max-1)
-	ox := n.X - (n.X % blocNb)
-	oy := n.Y - (n.Y % blocNb)
+	ox := n.X() - (n.X() % blocNb)
+	oy := n.Y() - (n.Y() % blocNb)
 	i := 0
 	for x := ox; x < ox+blocNb; x++ {
 		for y := oy; y < oy+blocNb; y++ {
-			if n.X == x && n.Y == y {
+			if n.X() == x && n.Y() == y {
 				continue
 			}
 			bs[i] = nodes[model.Key(x, y)]

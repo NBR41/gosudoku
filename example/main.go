@@ -1,12 +1,13 @@
-package backtracking
+package main
 
 import (
-	"testing"
+	"time"
 
+	"github.com/NBR41/gosudoku/backtracking"
 	"github.com/NBR41/gosudoku/model"
 )
 
-func TestResolve(t *testing.T) {
+func main() {
 	var inputs = []model.Input{
 		{Coord: model.NewCoord(0, 0), V: 9},
 		{Coord: model.NewCoord(3, 0), V: 1},
@@ -34,29 +35,10 @@ func TestResolve(t *testing.T) {
 		{Coord: model.NewCoord(7, 8), V: 7},
 	}
 
-	g, _ := NewGrid(9)
-	g.Fill(inputs)
-	var subs int
-	err := Resolve(g, PostProcess(func(g *model.Grid) {
-		subs++
-	}))
+	g, err := backtracking.NewGrid(9)
 	if err != nil {
-		t.Errorf("unexpected error, %v", err)
+		panic(err)
 	}
-
-	for i := range g.Values {
-		if g.Values[i].Get() == nil {
-			t.Error("unexpected value")
-			break
-		}
-
-		if !g.Values[i].(*node).IsValid() {
-			t.Error("unexpected value")
-			break
-		}
-	}
-
-	if subs == 0 {
-		t.Error("unexpected value")
-	}
+	g.Fill(inputs)
+	backtracking.Resolve(g, backtracking.WithDelayedDisplay(50*time.Millisecond))
 }
