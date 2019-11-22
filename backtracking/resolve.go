@@ -20,7 +20,6 @@ func WithDelayedDisplay(d time.Duration) PostProcess {
 
 //Resolve resolve the sudoku
 func Resolve(g *model.Grid, fs ...PostProcess) error {
-	//var nodes map[string]model.Celler
 	if !processPos(g, getPossibilities(g.Values, g.GetMax()), 0, fs) {
 		return model.ErrNoSolution
 	}
