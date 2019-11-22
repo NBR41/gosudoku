@@ -9,7 +9,7 @@ import (
 
 func TestGetMapValues(t *testing.T) {
 	v := getMapValues(4)
-	exp := map[int]struct{}{1: struct{}{}, 2: struct{}{}, 3: struct{}{}, 4: struct{}{}}
+	exp := map[int]struct{}{1: {}, 2: {}, 3: {}, 4: {}}
 	if !reflect.DeepEqual(exp, v) {
 		t.Error("unexpected value")
 	}
@@ -24,10 +24,10 @@ func TestGetPossibilities(t *testing.T) {
 	}
 	v := 1
 	cells["0-0"].Set(&v)
-	cells["0-0"].(*node).nodes = [][]model.Celler{[]model.Celler{cells["0-1"]}, []model.Celler{cells["1-0"]}}
-	cells["0-1"].(*node).nodes = [][]model.Celler{[]model.Celler{cells["0-0"]}, []model.Celler{cells["1-1"]}}
-	cells["1-0"].(*node).nodes = [][]model.Celler{[]model.Celler{cells["0-0"]}, []model.Celler{cells["1-1"]}}
-	cells["1-1"].(*node).nodes = [][]model.Celler{[]model.Celler{cells["0-1"]}, []model.Celler{cells["1-0"]}}
+	cells["0-0"].(*node).nodes = [][]model.Celler{{cells["0-1"]}, {cells["1-0"]}}
+	cells["0-1"].(*node).nodes = [][]model.Celler{{cells["0-0"]}, {cells["1-1"]}}
+	cells["1-0"].(*node).nodes = [][]model.Celler{{cells["0-0"]}, {cells["1-1"]}}
+	cells["1-1"].(*node).nodes = [][]model.Celler{{cells["0-1"]}, {cells["1-0"]}}
 
 	pos := getPossibilities(cells, 2)
 	if len(pos) != 3 {

@@ -1,3 +1,5 @@
 module github.com/NBR41/gosudoku
 
-require github.com/kylelemons/godebug v0.0.0-20170820004349-d65d576e9348
+go 1.13
+
+require github.com/kylelemons/godebug v1.1.0

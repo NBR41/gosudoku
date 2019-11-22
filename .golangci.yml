@@ -1,0 +1,23 @@
+linters:
+  enable-all: true
+  disable:
+    - lll
+
+issues:
+  exclude-use-default: false
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - funlen
+
+    - path: backtracking/resolve_test\.go
+      linters:
+        - dupl
+
+    - path: example/main\.go
+      linters:
+        - dupl
+
+    - path: backtracking/possbilities_test\.go
+      linters:
+        - goconst

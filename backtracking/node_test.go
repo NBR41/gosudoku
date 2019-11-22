@@ -34,7 +34,7 @@ func TestIsValid(t *testing.T) {
 		t.Error("unexpected value")
 	}
 	n.nodes = [][]model.Celler{
-		[]model.Celler{
+		{
 			&node{
 				Coord: model.NewCoord(0, 0),
 				k:     "0-0",
@@ -48,7 +48,6 @@ func TestIsValid(t *testing.T) {
 }
 
 func TestSetNodes(t *testing.T) {
-
 	nodes := make(map[string]model.Celler)
 	for i := 0; i < 4; i++ {
 		for j := 0; j < 4; j++ {
@@ -58,9 +57,9 @@ func TestSetNodes(t *testing.T) {
 	n := &node{Coord: model.NewCoord(0, 0), k: "0-0"}
 	n.setNodes(nodes, 4, 2)
 	exp := [][]model.Celler{
-		[]model.Celler{nodes["1-0"], nodes["2-0"], nodes["3-0"]},
-		[]model.Celler{nodes["0-1"], nodes["0-2"], nodes["0-3"]},
-		[]model.Celler{nodes["0-1"], nodes["1-0"], nodes["1-1"]},
+		{nodes["1-0"], nodes["2-0"], nodes["3-0"]},
+		{nodes["0-1"], nodes["0-2"], nodes["0-3"]},
+		{nodes["0-1"], nodes["1-0"], nodes["1-1"]},
 	}
 	if diff := pretty.Compare(exp, n.nodes); diff != "" {
 		t.Errorf("diff (-got +want)\n%s", diff)
@@ -71,10 +70,8 @@ func TestNewGrid(t *testing.T) {
 	g, err := NewGrid(3)
 	if err == nil {
 		t.Error("expecting error")
-	} else {
-		if err != model.ErrInvalidSquare {
-			t.Errorf("unexpected error, exp [%v] got [%v]", model.ErrInvalidSquare, err)
-		}
+	} else if err != model.ErrInvalidSquare {
+		t.Errorf("unexpected error, exp [%v] got [%v]", model.ErrInvalidSquare, err)
 	}
 	if g != nil {
 		t.Error("unexpected value")

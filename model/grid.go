@@ -1,3 +1,4 @@
+// Package model provides structs to declare grid, coordinate and celler interface
 package model
 
 import (
@@ -13,7 +14,7 @@ func Key(x, y int) string {
 	return fmt.Sprintf("%d-%d", x, y)
 }
 
-//Coord coordonate of a cell in the grid
+//Coord coordinate of a cell in the grid
 type Coord struct {
 	x int
 	y int

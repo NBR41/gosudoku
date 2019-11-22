@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"time"
 
 	"github.com/NBR41/gosudoku/backtracking"
@@ -40,5 +41,7 @@ func main() {
 		panic(err)
 	}
 	g.Fill(inputs)
-	backtracking.Resolve(g, backtracking.WithDelayedDisplay(50*time.Millisecond))
+	if err := backtracking.Resolve(g, backtracking.WithDelayedDisplay(50*time.Millisecond)); err != nil {
+		log.Fatal(err)
+	}
 }

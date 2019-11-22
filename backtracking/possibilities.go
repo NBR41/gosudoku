@@ -20,9 +20,11 @@ func getMapValues(max int) map[int]struct{} {
 }
 
 func getPossibilities(nodes map[string]model.Celler, max int) []*possibilities {
-	var ret []*possibilities
-	var no *node
-	var v *int
+	var (
+		ret = []*possibilities{}
+		no  *node
+		v   *int
+	)
 	for k := range nodes {
 		if nodes[k].Get() != nil {
 			continue

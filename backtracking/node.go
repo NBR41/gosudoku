@@ -43,7 +43,7 @@ func (n *node) Key() string {
 }
 
 func (n *node) setNodes(nodes map[string]model.Celler, max, blocNb int) {
-	xs := make([]model.Celler, max-1, max-1)
+	xs := make([]model.Celler, max-1)
 	nb := 0
 	for x := 0; x < max; x++ {
 		if x != n.X() {
@@ -51,7 +51,7 @@ func (n *node) setNodes(nodes map[string]model.Celler, max, blocNb int) {
 			nb++
 		}
 	}
-	ys := make([]model.Celler, max-1, max-1)
+	ys := make([]model.Celler, max-1)
 	nb = 0
 	for y := 0; y < max; y++ {
 		if y != n.Y() {
@@ -60,7 +60,7 @@ func (n *node) setNodes(nodes map[string]model.Celler, max, blocNb int) {
 		}
 	}
 
-	bs := make([]model.Celler, max-1, max-1)
+	bs := make([]model.Celler, max-1)
 	ox := n.X() - (n.X() % blocNb)
 	oy := n.Y() - (n.Y() % blocNb)
 	i := 0
