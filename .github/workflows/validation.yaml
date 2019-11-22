@@ -1,5 +1,5 @@
 name: Code validation
-oon: [push]
+on: [push]
 
 jobs:
   build:
