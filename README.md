@@ -1,4 +1,8 @@
 # gosudoku
+![Code validation](https://github.com/NBR41/gosudoku/workflows/Code%20validation/badge.svg)
+[![codecov](https://codecov.io/gh/NBR41/gosudoku/branch/master/graph/badge.svg)](https://codecov.io/gh/NBR41/gosudoku)
+![Publish](https://github.com/NBR41/gosudoku/workflows/Publish/badge.svg)
+
 A sudoku resolver
 
 ## Usage
