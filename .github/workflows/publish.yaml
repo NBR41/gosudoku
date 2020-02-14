@@ -32,4 +32,4 @@ jobs:
           DOCKERFILE_PATH: "Dockerfile"
           BUILD_CONTEXT: "."
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
