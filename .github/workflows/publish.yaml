@@ -9,6 +9,7 @@ jobs:
     name: Dockle validation
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2.0.0
       - name: Build image
         run: |
           docker build --no-cache --force-rm -t dockle-ci-test:latest .
@@ -16,7 +17,7 @@ jobs:
           chmod 666 dockle-ci-test.tar
       - name: Dockle image
         run:
-          docker run -v ${{github.workspace}}/dockle-ci-test.tar:/tmp/dockle-ci-test.tar --rm goodwithtech/dockle:v0.2.1 -d --input /tmp/dockle-ci-test.tar
+          docker run -v ${{github.workspace}}/dockle-ci-test.tar:/tmp/dockle-ci-test.tar --rm goodwithtech/dockle:v0.2.4 -d --input /tmp/dockle-ci-test.tar
       - name: cleanup
         run:
           docker image remove dockle-ci-test.tar
