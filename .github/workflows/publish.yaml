@@ -31,5 +31,5 @@ jobs:
           TAG: "latest"
           DOCKERFILE_PATH: "Dockerfile"
           BUILD_CONTEXT: "."
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
