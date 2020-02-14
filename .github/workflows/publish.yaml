@@ -19,8 +19,9 @@ jobs:
         run:
           docker run -v ${{github.workspace}}/dockle-ci-test.tar:/tmp/dockle-ci-test.tar --rm goodwithtech/dockle:v0.2.4 -d --input /tmp/dockle-ci-test.tar
       - name: cleanup
-        run:
-          docker image remove dockle-ci-test.tar
+        run: |
+          docker image remove dockle-ci-test:latest
+          rm ${{github.workspace}}/dockle-ci-test.tar
 
   dockerhub:
     name: Dockerhub publish
