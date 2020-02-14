@@ -12,14 +12,11 @@ issues:
       linters:
         - funlen
         - dupl
+        - goconst
 
     - path: example/main\.go
       linters:
         - dupl
-
-    - path: backtracking/possbilities_test\.go
-      linters:
-        - goconst
 
     - path: cmd/resolve/main\.go
       text: "^G304: Potential file inclusion via variable$"
